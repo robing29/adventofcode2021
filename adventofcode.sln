@@ -13,12 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day01", "..\2021day01\2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day03-part1", "day03-part1\2021day03-part1.csproj", "{78891B22-459A-42D6-9BF6-04DF6E589296}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021day03-part2", "2021day03-part2\2021day03-part2.csproj", "{7EC217A5-FA61-46A6-857B-D717710965E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day03-part2", "2021day03-part2\2021day03-part2.csproj", "{7EC217A5-FA61-46A6-857B-D717710965E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "inputs", "inputs", "{76C1EC1C-29A4-4568-B89C-F13A80EB4F88}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Documents\Visual Studio 2022\adventofcodeinputs\day3.txt = ..\..\..\..\Documents\Visual Studio 2022\adventofcodeinputs\day3.txt
+		inputs\day4.txt = inputs\day4.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021day04", "2021day04\2021day04.csproj", "{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +53,10 @@ Global
 		{7EC217A5-FA61-46A6-857B-D717710965E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EC217A5-FA61-46A6-857B-D717710965E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EC217A5-FA61-46A6-857B-D717710965E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
