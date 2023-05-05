@@ -21,11 +21,13 @@ foreach (string zeile in input)
     int x2 = int.Parse(zeileZweiteKoordinaten[0]);
     int y2 = int.Parse(zeileZweiteKoordinaten[1]);
 
-    if (x1 == x2 || y1 == y2)
-    {
-        int[] punktePaare = { x1, y1,x2,y2};
-        punkteViererpacksListe.Add(punktePaare);
-    }
+    //if (x1 == x2 || y1 == y2)
+    //{
+    //    int[] punktePaare = { x1, y1, x2, y2 };
+    //    punkteViererpacksListe.Add(punktePaare);
+    //}
+    int[] punktePaare = { x1, y1, x2, y2 };
+    punkteViererpacksListe.Add(punktePaare);
 }
 
 foreach (var vierPunkteWerte in punkteViererpacksListe)
@@ -50,8 +52,9 @@ foreach (var vierPunkteWerte in punkteViererpacksListe)
                 punktePaareListe.Add(punktePaar);
             }
         }
-        
-    } else if (vierPunkteWerte[1] == vierPunkteWerte[3]) //Y-Werte gleich
+
+    }
+    else if (vierPunkteWerte[1] == vierPunkteWerte[3]) //Y-Werte gleich
     {
         if (vierPunkteWerte[0] >= vierPunkteWerte[2]) //erster Y-Wert größer als der zweite
         {
@@ -84,58 +87,117 @@ Console.WriteLine(numberOfDuplicateGroups);
 // punkteViererpacksListe = x1, y1, x2, y2;
 
 List<int[]> punktePaareListePart2 = new List<int[]>();
-int[] punktePaarPart2 = new int[2];
-foreach (var intArray in punkteViererpacksListe)
+
+foreach (var vierPunkteWerte in punkteViererpacksListe)
 {
-    int maxX = Math.Max(intArray[0], intArray[2]); //max X-Value
-    int minX = Math.Min(intArray[0], intArray[2]); //min X-Value
-    int maxY = Math.Max(intArray[1], intArray[3]); //max Y-Value
-    int minY = Math.Min(intArray[1], intArray[3]); //min Y-Value
+    //x1 = 10, y1= 50, x2 = 10, y2 = 30
+    //x1 = 30, y1=10, x2 = 50, y2= 10
+    if (vierPunkteWerte[0] == vierPunkteWerte[2]) //x-Werte gleich
+    {
+        if (vierPunkteWerte[1] >= vierPunkteWerte[3]) //erster Y-Wert größer als der zweite
+        {
+            for (int i = vierPunkteWerte[3]; i <= vierPunkteWerte[1]; i++)
+            {
+                int[] punktePaar2 = { vierPunkteWerte[0], i };
+                punktePaareListePart2.Add(punktePaar2);
+            }
+        }
+        else
+        {
+            for (int i = vierPunkteWerte[1]; i <= vierPunkteWerte[3]; i++)
+            {
+                int[] punktePaar2 = { vierPunkteWerte[0], i };
+                punktePaareListePart2.Add(punktePaar2);
+            }
+        }
 
-    if (intArray[0] == minX && intArray[1] == minY)
+    }
+    else if (vierPunkteWerte[1] == vierPunkteWerte[3]) //Y-Werte gleich
     {
-        for (int i = intArray[0]; i <= intArray[2]; i++)
-        for (int k = intArray[1]; k <= intArray[3]; k++)
+        if (vierPunkteWerte[0] >= vierPunkteWerte[2]) //erster Y-Wert größer als der zweite
+        {
+            for (int i = vierPunkteWerte[2]; i <= vierPunkteWerte[0]; i++)
             {
-                punktePaarPart2[0] = i;
-                punktePaarPart2[1] = k;
-                punktePaareListePart2.Add(punktePaarPart2);
+                int[] punktePaar2 = { i, vierPunkteWerte[1] };
+                punktePaareListePart2.Add(punktePaar2);
             }
+        }
+        else
+        {
+            for (int i = vierPunkteWerte[0]; i <= vierPunkteWerte[2]; i++)
+            {
+                int[] punktePaar2 = { i, vierPunkteWerte[1] };
+                punktePaareListePart2.Add(punktePaar2);
+            }
+        }
+    }
+    else //Weder X-Werte noch Y-Werte gleich
+    {
+        int maxX = Math.Max(vierPunkteWerte[0], vierPunkteWerte[2]); //max X-Value
+        int minX = Math.Min(vierPunkteWerte[0], vierPunkteWerte[2]); //min X-Value
+        int maxY = Math.Max(vierPunkteWerte[1], vierPunkteWerte[3]); //max Y-Value
+        int minY = Math.Min(vierPunkteWerte[1], vierPunkteWerte[3]); //min Y-Value
 
-    }
-    if (intArray[0] == minX && intArray[1] == maxY)
-    {
-        for (int i = intArray[0]; i <= intArray[2]; i++)
-        for (int k = intArray[1]; k >= intArray[3]; k--)
+        if (vierPunkteWerte[0] == minX && vierPunkteWerte[1] == minY)
+        {
+            int i = vierPunkteWerte[0];
+            int k = vierPunkteWerte[1];
+            do
             {
-                punktePaarPart2[0] = i;
-                punktePaarPart2[1] = k;
+                int[] punktePaarPart2 = { i, k };
                 punktePaareListePart2.Add(punktePaarPart2);
-            }
-    }
-    if (intArray[0] == maxX && intArray[1] == maxY)
-    {
-        for (int i = intArray[0]; i >= intArray[2]; i--)
-            for (int k = intArray[1]; k >= intArray[3]; k--)
+                i++;
+                k++;
+            } while (i <= vierPunkteWerte[2]);
+
+        }
+        if (vierPunkteWerte[0] == minX && vierPunkteWerte[1] == maxY)
+        {
+            int i = vierPunkteWerte[0];
+            int k = vierPunkteWerte[1];
+            do
             {
-                punktePaarPart2[0] = i;
-                punktePaarPart2[1] = k;
+                int[] punktePaarPart2 = { i, k };
                 punktePaareListePart2.Add(punktePaarPart2);
-            }
-    }
-    if (intArray[0] == maxX && intArray[1] == minY)
-    {
-        for (int i = intArray[0]; i >= intArray[2]; i--)
-            for (int k = intArray[1]; k <= intArray[3]; k++)
+                i++;
+                k--;
+            } while (i <= vierPunkteWerte[2]);
+        }
+        if (vierPunkteWerte[0] == maxX && vierPunkteWerte[1] == maxY)
+        {
+            int i = vierPunkteWerte[0];
+            int k = vierPunkteWerte[1];
+            do
             {
-                punktePaarPart2[0] = i;
-                punktePaarPart2[1] = k;
+                int[] punktePaarPart2 = { i, k };
                 punktePaareListePart2.Add(punktePaarPart2);
-            }
-    }
-    foreach (var item in punktePaareListePart2)
-    {
-        Console.WriteLine($"{string.Join(",", item)}");
+                i--;
+                k--;
+            } while (i >= vierPunkteWerte[2]);
+        }
+        if (vierPunkteWerte[0] == maxX && vierPunkteWerte[1] == minY)
+        {
+            int i = vierPunkteWerte[0];
+            int k = vierPunkteWerte[1];
+            do
+            {
+                int[] punktePaarPart2 = { i, k };
+                punktePaareListePart2.Add(punktePaarPart2);
+                i--;
+                k++;
+            } while (i >= vierPunkteWerte[2]);
+        }
     }
 }
+
+//foreach (var item in punktePaareListePart2)
+//{
+//    Console.WriteLine($"{string.Join(",", item)}");
+//}
+
+int numberOfDuplicateGroupsPart2 = punktePaareListePart2
+    .GroupBy(array => string.Join(",", array))
+    .Count(group => group.Count() > 1);
+
+Console.WriteLine(numberOfDuplicateGroupsPart2);
 
