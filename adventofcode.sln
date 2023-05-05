@@ -23,9 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "inputs", "inputs", "{76C1EC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day04", "2021day04\2021day04.csproj", "{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aoc2021-day5", "aoc2021-day5\aoc2021-day5.csproj", "{42F4CCCF-F388-48E5-A32A-0C6FE315914E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day05", "aoc2021-day5\2021day05.csproj", "{42F4CCCF-F388-48E5-A32A-0C6FE315914E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linq-uebungen", "linq-uebungen\linq-uebungen.csproj", "{C8F2D7AE-F731-49A2-B1E7-BC2399B8C3A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "linq-uebungen", "linq-uebungen\linq-uebungen.csproj", "{C8F2D7AE-F731-49A2-B1E7-BC2399B8C3A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021day06", "2021day06\2021day06.csproj", "{D5985BF6-5201-4585-AF20-C44440576FB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{C8F2D7AE-F731-49A2-B1E7-BC2399B8C3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F2D7AE-F731-49A2-B1E7-BC2399B8C3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8F2D7AE-F731-49A2-B1E7-BC2399B8C3A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5985BF6-5201-4585-AF20-C44440576FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5985BF6-5201-4585-AF20-C44440576FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5985BF6-5201-4585-AF20-C44440576FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5985BF6-5201-4585-AF20-C44440576FB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
