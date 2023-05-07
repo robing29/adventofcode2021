@@ -7,110 +7,33 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+
         var input = File.ReadAllText(@"..\..\..\..\inputs\day6.txt");
         //string input = "3,4,3,1,2";
-        List<int> list = new List<int>();
-        list = input.Split(",").ToList().Select(x => int.Parse(x)).ToList();
 
-        List<Fish> fishInventory = new List<Fish>();
-        List<FishStruct> fishStructs = new List<FishStruct>();
-        foreach (int i in list)
+        IEnumerable<long> initalState = input.Split(",").Select(long.Parse);
+
+        long[] fishDatabase = new long[9];
+
+        //FishDatabase = Amount of Fish that are in each state. State fishDatabase[0] means that the amount stored at that position have 0 days left before breeding..
+        foreach (var item in initalState)
         {
-            //fishInventory.Add(new Fish(i));
-            fishStructs.Add(new FishStruct(i));
+            long i = item;
+            fishDatabase[i]++;
         }
 
-        List<Fish> newFish = new List<Fish>();
-        List<FishStruct> newFishStructs = new List<FishStruct>();
-        Stopwatch sw = new Stopwatch();
+        //Day Simulator
         int afterDays = 256;
         for (int i = 0; i < afterDays; i++)
         {
-            sw.Start();
-            for (int k = 0; k < fishStructs.Count; k++)
+            long readyToBirth = fishDatabase[0];
+            for (int j = 0; j < 8; j++)
             {
-                FishStruct fish = fishStructs[k];
-                if (fish.DaysUntilReset == 0)
-                {
-                    newFishStructs.Add(fish.ResetAndBirth());
-                    fish.DaysUntilReset = 6;
-                    fishStructs[k] = fish;
-                }
-                else
-                {
-                    fish.DaysUntilReset--;
-                    fishStructs[k] = fish;
-                }
+                fishDatabase[j] = fishDatabase[j + 1];
             }
-            newFishStructs.ForEach(x => fishStructs.Add(x));
-            newFishStructs.Clear();
-            //newFish.ForEach(x => fishInventory.Add(x));
-            //newFish.Clear();
-            Console.WriteLine($"day{i + 1}-Dauer: {sw.Elapsed}");
+            fishDatabase[6] += readyToBirth;
+            fishDatabase[8] = readyToBirth;
+            Console.WriteLine($"Day{i + 1}: {fishDatabase.Sum()}");
         }
-
-        //for (int i = 0; i < afterDays; i++)
-        //{
-        //    sw.Start();
-        //    foreach (Fish fish in fishInventory)
-        //    {
-        //        if (fish.DaysUntilReset == 0)
-        //        {
-        //            newFish.Add(fish.ResetAndBirth());
-        //        }
-        //        else
-        //        {
-        //            fish.DaysUntilReset--;
-        //        }
-        //    }
-        //    newFish.ForEach(x => fishInventory.Add(x));
-        //    newFish.Clear();
-        //    Console.WriteLine($"day{i+1}-Dauer: {sw.Elapsed}");
-        //}
-        //Dauer bei afterDays = 200 mit classes: 00:00:45.9082687
-        //zweiter Benchmark: day200-Dauer: 00:00:46.6338716
-
-
-        //Console.WriteLine(fishInventory.Count);
-        //Console.WriteLine(fishStructs.Count);
-        Console.WriteLine("done");
-        Console.ReadLine();
     }
-}
-
-public struct FishStruct
-{
-    public FishStruct(int anfangsFisch)
-    {
-        DaysUntilReset = anfangsFisch;
-    }
-
-    public int DaysUntilReset { get; set; }
-
-    public FishStruct ResetAndBirth()
-    {
-        return new FishStruct(8);
-    }
-}
-
-public class Fish
-{
-    public Fish()
-    {
-        DaysUntilReset = 8;
-    }
-    public Fish(int anfangsFisch)
-    {
-        DaysUntilReset = anfangsFisch;
-    }
-    public int DaysUntilReset { get; set; }
-
-
-    public Fish ResetAndBirth()
-    {
-        DaysUntilReset = 6;
-        return new Fish();
-    }
-
-
 }
