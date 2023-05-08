@@ -19,6 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "inputs", "inputs", "{76C1EC
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Documents\Visual Studio 2022\adventofcodeinputs\day3.txt = ..\..\..\..\Documents\Visual Studio 2022\adventofcodeinputs\day3.txt
 		inputs\day4.txt = inputs\day4.txt
+		inputs\day5.txt = inputs\day5.txt
+		inputs\day6.txt = inputs\day6.txt
+		inputs\day7.txt = inputs\day7.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day04", "2021day04\2021day04.csproj", "{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}"
@@ -29,7 +32,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "linq-uebungen", "linq-uebun
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day06", "2021day06\2021day06.csproj", "{D5985BF6-5201-4585-AF20-C44440576FB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021day07", "2021day07\2021day07.csproj", "{0F713B8D-95D8-4D4C-B989-1231A55F418A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day07", "2021day07\2021day07.csproj", "{0F713B8D-95D8-4D4C-B989-1231A55F418A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{19E49FD7-C259-4913-BE9C-98041A7DC5CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +86,10 @@ Global
 		{0F713B8D-95D8-4D4C-B989-1231A55F418A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F713B8D-95D8-4D4C-B989-1231A55F418A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F713B8D-95D8-4D4C-B989-1231A55F418A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E49FD7-C259-4913-BE9C-98041A7DC5CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E49FD7-C259-4913-BE9C-98041A7DC5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E49FD7-C259-4913-BE9C-98041A7DC5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E49FD7-C259-4913-BE9C-98041A7DC5CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
