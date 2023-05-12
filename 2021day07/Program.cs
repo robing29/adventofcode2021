@@ -39,10 +39,24 @@
             weightedAverage += weight * (Math.Abs(iAverage - key));
             weightSum += weight;
         }
-        intArray.ForEach(x => sumOfFuelPart2 += getFuel(Math.Abs((int)weightedAverage - x)));
+
+        List<long> values = new List<long>();
+        
+        //intArray.ForEach(x => sumOfFuelPart2 += getFuel(Math.Abs((int)weightedAverage - x)));
+        for (int i = -20; i <= 20; i++)
+        {
+            intArray.ForEach(x => sumOfFuelPart2 += getFuel(Math.Abs((iAverage+i) - x)));
+            Console.WriteLine("sumOfFuel = " + sumOfFuelPart2 + " bei average = " + iAverage + "und i = " + i);
+            values.Add(sumOfFuelPart2);
+            sumOfFuelPart2 = 0;
+        }
+
+        Console.WriteLine("Best value = " + values.Min());
+        
+
 
         //Solution print
-        Console.WriteLine($"Median: {median}, sumOfFuelpart1: {sumOfFuel}, average: {average}, iAverage: {iAverage}, sumOfFuelPart2: {sumOfFuelPart2}, weightedAverage: {weightedAverage}");
+        //Console.WriteLine($"Median: {median}, sumOfFuelpart1: {sumOfFuel}, average: {average}, iAverage: {iAverage}, sumOfFuelPart2: {sumOfFuelPart2}, weightedAverage: {weightedAverage}");
 
         //94862126 is not the answer
     }
