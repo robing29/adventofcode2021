@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "inputs", "inputs", "{76C1EC
 		inputs\day5.txt = inputs\day5.txt
 		inputs\day6.txt = inputs\day6.txt
 		inputs\day7.txt = inputs\day7.txt
+		inputs\day8.txt = inputs\day8.txt
+		day8sample.txt = day8sample.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day04", "2021day04\2021day04.csproj", "{CF5D42BC-7A71-44F9-8BC9-8BA0DD92F73B}"
@@ -34,7 +36,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day06", "2021day06\2021
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021day07", "2021day07\2021day07.csproj", "{0F713B8D-95D8-4D4C-B989-1231A55F418A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{19E49FD7-C259-4913-BE9C-98041A7DC5CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{19E49FD7-C259-4913-BE9C-98041A7DC5CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2021-day08", "2021-day08\2021-day08.csproj", "{38CD1AE7-A9D0-4B6B-837C-C3170EADCB68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,6 +94,10 @@ Global
 		{19E49FD7-C259-4913-BE9C-98041A7DC5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E49FD7-C259-4913-BE9C-98041A7DC5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19E49FD7-C259-4913-BE9C-98041A7DC5CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38CD1AE7-A9D0-4B6B-837C-C3170EADCB68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CD1AE7-A9D0-4B6B-837C-C3170EADCB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CD1AE7-A9D0-4B6B-837C-C3170EADCB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CD1AE7-A9D0-4B6B-837C-C3170EADCB68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
