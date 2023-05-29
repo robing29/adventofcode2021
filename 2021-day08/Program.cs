@@ -1,10 +1,12 @@
 ﻿using Microsoft.VisualBasic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using static System.Net.Mime.MediaTypeNames;
 
 ///<summary>Data Input</summary>
 ///
-//var input = File.ReadAllLines(@"..\..\..\..\inputs\day8.txt").ToList();
-var input = File.ReadAllLines(@"..\..\..\..\inputs\day8sample.txt").ToList();
+var input = File.ReadAllLines(@"..\..\..\..\inputs\day8.txt").ToList();
+//var input = File.ReadAllLines(@"..\..\..\..\inputs\day8sample.txt").ToList();
 
 //input = input.Select(x => x.Split(" | ").Last()).ToList();
 
@@ -22,82 +24,118 @@ Console.WriteLine(uniqueDigits);
 
 ///<summary>Part 2</summary>
 ///
-
+long puzzleOutputZahl = 0;
 foreach (var zeile in input)
 {
     var puzzleInput = zeile.Split(" | ").First();
-    var puzzleOutput = zeile.Split(" | ").Last();
+    var puzzleOutput = zeile.Split(" | ").Last().Split(" ").ToList();
 
+    //Sorting of values
+    for (int i = 0; i < puzzleOutput.Count; i++)
+    {
+        var test = puzzleOutput[i].ToCharArray();
+        Array.Sort(test);
+        puzzleOutput[i] = new string(test);
+    }
+
+    //Sorting of values
     var puzzleDigits = puzzleInput.Split(" ").ToList();
+    for (int i = 0; i < puzzleDigits.Count; i++)
+    {
+        var chararray = puzzleDigits[i].ToCharArray();
+        Array.Sort(chararray);
+        puzzleDigits[i] = new string(chararray);
+    }
+    //var chararray = puzzleDigits.Select(x => x.ToCharArray());
+    List<string> decodierteZahlen = new List<string>();
+    for (int i = 0; i < 10; i++)
+    {
+        decodierteZahlen.Add("");
+    }
 
-    //Gemeinsamkeiten zwischen 2er und 3er finden
-    //Gemeinsamkeiten zwischen allen unique values finden
-    //Die Resultate dieser Detektivarbeit auf die fuenfer anwenden -> .contains(gefundenerBuchstabe/gefundeneBuchstaben)
-    //Vergleich von Length = 4 und Length = 2 -> mittlerer und linksoberer Strich
-    string obererStrich1 = puzzleDigits.Select(x => x).Where(x => x.Length == 2 || x.Length == 3).First();
-    string obererStrich2 = puzzleDigits.Select(x => x).Where(x => x.Length == 2 || x.Length == 3).Last();
-    var buchstabeFuerOberenStrich = obererStrich2.Except(obererStrich1).ToArray();// muss in beide Richtungen passieren
-    string buchstabeFuerOberenStrichString = new string(buchstabeFuerOberenStrich);
+    //Decode unique values
+    decodierteZahlen[8] = puzzleDigits.Select(x => x).Where(x => x.Length == 7).First();
+    decodierteZahlen[7] = puzzleDigits.Select(x => x).Where(x => x.Length == 3).First();
+    decodierteZahlen[4] = puzzleDigits.Select(x => x).Where(x => x.Length == 4).First();
+    decodierteZahlen[1] = puzzleDigits.Select(x => x).Where(x => x.Length == 2).First();
+    puzzleDigits.Remove(decodierteZahlen[8]);
+    puzzleDigits.Remove(decodierteZahlen[7]);
+    puzzleDigits.Remove(decodierteZahlen[4]);
+    puzzleDigits.Remove(decodierteZahlen[1]);
 
-    string acht = puzzleDigits.Select(x => x).Where(x => x.Length == 7).First();
-    string nullAlsDigit = puzzleDigits.Select(x => x).Where(x => x.Length == 6).First();
-    //var buchstabeMittlererStrichChar = acht.Except(nullAlsDigit).ToArray();
-    //string buchstabeMittlererStrich = new string(buchstabeMittlererStrichChar);
-    string buchstabeMittlererStrich = new string(acht.Except(nullAlsDigit).ToArray());
+    //Extract identifiers
+    string dddd = String.Empty;
+    string c_oder_f = decodierteZahlen[1];
+    string b_oder_d = String.Concat(decodierteZahlen[4].Except(decodierteZahlen[1]));
+
+    //Extract codes with length of 5 or 6
+    List<string> fuenferlaenge = puzzleDigits.Select(x => x).Where(x => x.Length == 5).ToList();
+    List<string> sechserlaenge = puzzleDigits.Select(x => x).Where(x => x.Length == 6).ToList();
+
+    //identify dddd
+    if (fuenferlaenge.All(x => x.Contains(b_oder_d[0]))){
+        dddd = b_oder_d[0].ToString();
+    }
+    else
+    {
+        dddd = b_oder_d[1].ToString();
+    }
 
 
 
+    decodierteZahlen[3] = fuenferlaenge.Select(x => x).Where(x => x.Contains(decodierteZahlen[1][0]) && x.Contains(decodierteZahlen[1][1]) ).First();
+    fuenferlaenge.Remove(decodierteZahlen[3]);
+    decodierteZahlen[5] = fuenferlaenge.Select(x => x).Where(x => x.Contains(b_oder_d[0]) && x.Contains(b_oder_d[1])).First();
+    fuenferlaenge.Remove(decodierteZahlen[5]);
+    decodierteZahlen[2] = fuenferlaenge[0];
+    fuenferlaenge.Remove(decodierteZahlen[2]);
 
 
-//  0:      1:      2:      3:      4:
-// aaaa    ....    aaaa    aaaa    ....
-//b    c  .    c  .    c  .    c  b    c
-//b    c  .    c  .    c  .    c  b    c
-// ....    ....    dddd    dddd    dddd
-//e    f  .    f  e    .  .    f  .    f
-//e    f  .    f  e    .  .    f  .    f
-// gggg    ....    gggg    gggg    ....
+
+    decodierteZahlen[9] = sechserlaenge.Select(x => x).Where(x => x.Contains(decodierteZahlen[4][0]) && x.Contains(decodierteZahlen[4][1]) && x.Contains(decodierteZahlen[4][2]) && x.Contains(decodierteZahlen[4][3])).First();
+    sechserlaenge.Remove(decodierteZahlen[9]);
+    decodierteZahlen[0] = sechserlaenge.Select(x => x).Where(x => x.Contains(dddd) == false).First();
+    sechserlaenge.Remove(decodierteZahlen[0]);
+    decodierteZahlen[6] = sechserlaenge[0];
+
+    string outputValueString = "";
+    List<int> outputValue = new List<int>();
+    foreach (var item in puzzleOutput)
+    {
+        outputValue.Add(decodierteZahlen.IndexOf(item));
+        //outputValueString = outputValueString.Insert(outputValueString.Length, outputValue.ToString());
+    }
+    foreach (var item in outputValue)
+    {
+        outputValueString += item.ToString();
+    }
+    puzzleOutputZahl += int.Parse(outputValueString);
+
+    //  0:      1:      2:      3:      4:
+    // aaaa    ....    aaaa    aaaa    ....
+    //b    c  .    c  .    c  .    c  b    c
+    //b    c  .    c  .    c  .    c  b    c
+    // ....    ....    dddd    dddd    dddd
+    //e    f  .    f  e    .  .    f  .    f
+    //e    f  .    f  e    .  .    f  .    f
+    // gggg    ....    gggg    gggg    ....
 
 
-//  5:      6:      7:      8:      9:
-// aaaa    aaaa    aaaa    aaaa    aaaa
-//b    .  b    .  .    c  b    c  b    c
-//b    .  b    .  .    c  b    c  b    c
-// dddd    dddd    ....    dddd    dddd
-//.    f  e    f  .    f  e    f  .    f
-//.    f  e    f  .    f  e    f  .    f
-// gggg    gggg    ....    gggg    gggg
+    //  5:      6:      7:      8:      9:
+    // aaaa    aaaa    aaaa    aaaa    aaaa
+    //b    .  b    .  .    c  b    c  b    c
+    //b    .  b    .  .    c  b    c  b    c
+    // dddd    dddd    ....    dddd    dddd
+    //.    f  e    f  .    f  e    f  .    f
+    //.    f  e    f  .    f  e    f  .    f
+    // gggg    gggg    ....    gggg    gggg
+
     //unique values: eins = 2, vier = 4, sieben = 3, acht = 7
     //5er= zwei, drei, fünf
     //6er= null, sechs, neun
-
-    //Schnittmenge der 6er: a, b, f, g
-    //Enthalten in jeweils zwei 6ern, aber in einem nicht: d, c, e
-
-    //5er: Enthalten in zwei, aber nicht in einem = c
-    //5er: Enthalten in einem, aber nicht in den anderen zwei = e
-
-    //acht - null = dddd
-    //4 - 1 = (bei erkanntem dddd) -> b
-    //Der 5er mit dem b -> fünf
-    //5-1 = c
-    //6er mit c -> neun - Der andere 6er -> sechs
-    //3-2 = aaaa
-    //
-
-    
-
-    //Console.WriteLine(buchstabeFuerOberenStrich);
-    //foreach (var buchstabe in puzzleDigits)
-    //{
-    //    if (buchstabe.Length == 2 || buchstabe.Length == 3)
-    //    {
-
-    //    }
-    //}
-
-
 }
+
+Console.WriteLine(puzzleOutputZahl);
 
 
 
