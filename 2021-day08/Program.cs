@@ -39,6 +39,15 @@ foreach (var zeile in input)
     var buchstabeFuerOberenStrich = obererStrich2.Except(obererStrich1).ToArray();// muss in beide Richtungen passieren
     string buchstabeFuerOberenStrichString = new string(buchstabeFuerOberenStrich);
 
+    string acht = puzzleDigits.Select(x => x).Where(x => x.Length == 7).First();
+    string nullAlsDigit = puzzleDigits.Select(x => x).Where(x => x.Length == 6).First();
+    //var buchstabeMittlererStrichChar = acht.Except(nullAlsDigit).ToArray();
+    //string buchstabeMittlererStrich = new string(buchstabeMittlererStrichChar);
+    string buchstabeMittlererStrich = new string(acht.Except(nullAlsDigit).ToArray());
+
+
+
+
 
 //  0:      1:      2:      3:      4:
 // aaaa    ....    aaaa    aaaa    ....
@@ -68,7 +77,7 @@ foreach (var zeile in input)
     //5er: Enthalten in zwei, aber nicht in einem = c
     //5er: Enthalten in einem, aber nicht in den anderen zwei = e
 
-    //7 - 6 = dddd
+    //acht - null = dddd
     //4 - 1 = (bei erkanntem dddd) -> b
     //Der 5er mit dem b -> fünf
     //5-1 = c
@@ -78,7 +87,7 @@ foreach (var zeile in input)
 
     
 
-    Console.WriteLine(buchstabeFuerOberenStrich);
+    //Console.WriteLine(buchstabeFuerOberenStrich);
     //foreach (var buchstabe in puzzleDigits)
     //{
     //    if (buchstabe.Length == 2 || buchstabe.Length == 3)
